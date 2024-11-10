@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+
+    <section>
+        <nav>
+            <ul class="nav">
+
+                <!-- logo and name -->
+                <li class="left-menu">
+                    <img src="image/question mark.png" class="nav-logo">
+                    <div class="name"><span>Quizify</span></div>
+                </li>
+                <!-- navigation links -->
+                <li><a href="#discover-quiz">Discover Quizzes</a></li>
+                <li><a href="#leaderboard">Leaderboard</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#contact-us">Contact Us</a></li>
+    
+                <!-- login and signup buttons -->
+                <li><a href="login.html" target="_blank" class="btn login-btn">Login</a></li>
+                <li><a href="login.html" target="_blank" class="btn signup-btn">Signup</a></li>
+            </ul>
+        </nav>
+    </section>
+
+
+<!-- home section -->
+<section>
+    <div class="main-container">
+        <h1>Welcome to Quizify!</h1>
+        <h2>At Quizify, we offer a wide range of quizzes across multiple subjects to help you challenge yourself,
+            learn new things, and have fun! Our quizzes are designed for all levels—from beginners to experts</h2>
+        <div id="choice-section">
+            <a href="create-quiz.html"><button>Create a Quiz</button></a>
+            <a href="quizzes.html"><button>View Quizzes</button></a>
+        </div>
+    </div>
+    <section>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </section>
+</section>
+
+
+<!-- animated stats counter -->
+<section class="stats-counter">
+    <h2>Quizify Stats</h2>
+    <div class="stats-container">
+        <div class="stat-item">
+            <span class="stat-number" data-target="120000">0</span>
+            <p>Quizzes Taken</p>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number" data-target="50000">0</span>
+            <p>Registered Users</p>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number" data-target="4500">0</span>
+            <p>Active Quizzes</p>
+        </div>
+    </div>
+</section>
+
+<!-- call to action (cta)) -->
+<section class="cta-banner">
+    <div class="cta-content">
+        <h2>Join the Quizify Revolution</h2>
+        <p>Create and take quizzes across a wide variety of subjects and challenge your friends!</p>
+        <a href="login.html"><button class="cta-button">Get Started Now</button></a>
+
+    </div>
+</section>
+
+<!-- testimonial carousel -->
+<section class="testimonial-carousel">
+    <h2>What Our Users Are Saying</h2>
+    <div class="carousel-container">
+        <div class="testimonial-slide">
+            <img src="image/test.4.png">
+            <p>"Quizify has improved my general knowledge tremendously!" - Rakesh Gupta</p>
+        </div>
+        <div class="testimonial-slide">
+            <img src="image/test.1.png">
+            <p>"I love the variety of quizzes. It's fun and educational!" - Priya Singh</p>
+        </div>
+        <div class="testimonial-slide">
+            <img src="image/test.2.png">
+            <p>"Creating quizzes for my students has never been easier!" - Anjali Verma</p>
+        </div>
+        <div class="testimonial-slide">
+            <img src="image/test.5.png">
+            <p>"The leaderboard feature keeps me coming back for more!" - Rohit Sharma</p>
+        </div>
+        <div class="testimonial-slide">
+            <img src="image/test.3.png">
+            <p>"The variety of quizzes on Quizify is amazing. There's something for everyone!" - Neha Agarwal</p>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- discover quizzes -->
+<section class="discover-quiz" id="discover-quiz">
+    <h2>Discover Quizzes</h2>
+    <div class="quiz-cards">
+
+        <div class="card">
+            <img src="image/maths.png" class="quiz-image">
+            <h3>Mathematics</h3>
+            <p>Challenge your math skills with various levels of quizzes.</p>
+            <a href="https://www.mathopolis.com/questions/quizzes.php" target="_blank">
+                <button>Start Quiz</button>
+            </a>
+        </div>
+        <div class="card">
+            <img src="image/science.png" class="quiz-image">
+            <h3>Science</h3>
+            <p>Explore the wonders of science with engaging quizzes.</p>
+            <a href="https://www.britannica.com/quiz/science-quiz" target="_blank">
+                <button>Start Quiz</button>
+            </a>
+        </div>
+        <div class="card">
+            <img src="image/history.png" class="quiz-image">
+            <h3>History</h3>
+            <p>Test your knowledge of world history and historical events.</p>
+            <a href="https://www.britannica.com/quiz/41-questions-from-britannicas-most-popular-world-history-quizzes" target="_blank">
+                <button>Start Quiz</button>
+            </a>
+        </div>
+        <div class="card">
+            <img src="image/geography.png" class="quiz-image">
+            <h3>Geography</h3>
+            <p>Discover the world with our geography quizzes.</p>
+            <a href="https://www.triviaplaza.com/geography-world-quizzes/" target="_blank">
+                <button>Start Quiz</button>
+            </a>
+        </div>
+
+        <div class="card">
+            <img src="image/grammar.png" class="quiz-image">
+            <h3>English</h3>
+            <p>Improve your grammar and vocabulary with fun quizzes.</p>
+            <a href="https://www.oxfordonlineenglish.com/english-level-test/grammar" target="_blank">
+                <button>Start Quiz</button>
+            </a>
+        </div>
+        <div class="card">
+            <img src="image/computer_science.png" class="quiz-image">
+            <h3>Computer Science</h3>
+            <p>Learn coding and algorithms with challenging quizzes.</p>
+            <a href="https://www.tutorialspoint.com/basics_of_computer_science/basics_of_computer_science_online_quiz.htm" target="_blank">
+                <button>Start Quiz</button>
+            </a>
+        </div>
+        <div class="card">
+            <img src="image/physics.png" class="quiz-image">
+            <h3>Physics</h3>
+            <p>Test your knowledge of the laws of physics with interactive quizzes.</p>
+            <a href="https://www.britannica.com/quiz/all-about-physics-quiz" target="_blank">
+                <button>Start Quiz</button>
+            </a>
+        </div>
+        <div class="card">
+            <img src="image/evs.png" class="quiz-image">
+            <h3>Environmental Science</h3>
+            <p>Explore environmental issues and sustainability topics.</p>
+            <a href="https://www.proprofs.com/quiz-school/story.php?title=evs-quiz-created-by-mrs-kajal-sharma-ps-ukhlarsi-muradnagar_2yi" target="_blank">
+                <button>Start Quiz</button>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- leaderboard -->
+<section class="leaderboard-section" id="leaderboard">
+    <h2>Leaderboard</h2>
+    <div class="leaderboard-container">
+
+        <div class="leaderboard-card">
+            <img src="image/player 1.png" class="player-image">
+            <h3>1. Rajesh Kumar</h3>
+            <p>Points: 1520</p>
+            <div class="achievement">
+                <img src="image/trophy.png" alt="Trophy Icon" class="trophy-icon">
+                <span>5 Trophies Earned</span>
+            </div>
+        </div>
+
+        <div class="leaderboard-card">
+            <img src="image/player 4.png "class="player-image">
+            <h3>2. Aarti Sharma</h3>
+            <p>Points: 1490</p>
+            <div class="achievement">
+                <img src="image/trophy.png" alt="Trophy Icon" class="trophy-icon">
+                <span>4 Trophies Earned</span>
+            </div>
+        </div>
+
+        <div class="leaderboard-card">
+            <img src="image/player 2.png"class="player-image">
+            <h3>3. Amit Verma</h3>
+            <p>Points: 1470</p>
+            <div class="achievement">
+                <img src="image/trophy.png" alt="Trophy Icon" class="trophy-icon">
+                <span>3 Trophies Earned</span>
+            </div>
+        </div>
+
+        <div class="leaderboard-card">
+            <img src="image/player 5.png"class="player-image">
+            <h3>4. Priya Mehta</h3>
+            <p>Points: 1450</p>
+            <div class="achievement">
+                <img src="image/trophy.png" alt="Trophy Icon" class="trophy-icon">
+                <span>3 Trophies Earned</span>
+            </div>
+        </div>
+
+        <div class="leaderboard-card">
+            <img src="image/player 3.png"class="player-image">
+            <h3>5. Anil Choudhary</h3>
+            <p>Points: 1440</p>
+            <div class="achievement">
+                <img src="image/trophy.png" alt="Trophy Icon" class="trophy-icon">
+                <span>2 Trophies Earned</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- about us -->
+<section id="about-us" class="about-us-section">
+    <div class="about-us-container">
+        <h2>About Us</h2>
+        <p>
+            Welcome to <strong>Quizify</strong>, the ultimate platform for quiz enthusiasts and learners! Our mission is to make learning fun and engaging through interactive quizzes covering a wide range of subjects. Whether you're testing your knowledge, preparing for exams, or just enjoying a fun challenge, Quizify has something for everyone.
+        </p>
+        <p>
+            At Quizify, we believe in the power of curiosity and the joy of discovery. Our quizzes are designed to cater to all difficulty levels—easy, medium, and expert—so you can progress at your own pace. You can even create your own quizzes, challenge friends, and climb the leaderboard to prove your expertise.
+        </p>
+        <p>
+            Join us on this journey of knowledge and entertainment. Compete with others, learn new things, and, most importantly, have fun!
+        </p>
+        <p class="signature">
+            - The Quizify Team
+        </p>
+    </div>
+</section>
+
+
+<!-- contact us -->
+<section id="contact-us">
+    <div class="contact-container-unique">
+        <h2>Contact Us</h2>
+        <p>We'd love to hear from you! Feel free to reach out with any questions, feedback, or inquiries.</p>
+        
+        <div class="contact-form-unique">
+            <form class="contact-form-unique">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your message here..." required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+        <div class="social-media">
+            <a href="#"><img src="image/facebook.png" alt="Facebook"></a>
+            <a href="#"><img src="image/twitter.png" alt="Twitter"></a>
+            <a href="#"><img src="image/linkedin.png" alt="LinkedIn"></a>
+            <a href="#"><img src="image/instagram.png" alt="Instagram"></a>
+        </div>
+    </div>
+</section>
+
+
+
+<script src="script.js"></script>
+</body>
+</html>

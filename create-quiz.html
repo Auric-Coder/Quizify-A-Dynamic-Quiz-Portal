@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-container-two">
+        <h2>Create a Quiz</h2>
+        <form id="create-quiz-form" class="quiz-form">
+            <label for="quiz-title">Quiz Title:</label>
+            <input type="text" id="quiz-title" required>
+        
+            <label for="quiz-password">Set Password:</label>
+            <input type="password" id="quiz-password" required>
+        
+            <label for="num-easy-questions">Number of EASY Questions:</label>
+            <input type="number" id="num-easy-questions" min="1" required>
+        
+            <label for="num-hard-questions">Number of HARD Questions:</label>
+            <input type="number" id="num-hard-questions" min="1" required>
+        
+            <label for="num-expert-questions">Number of EXPERT Questions:</label>
+            <input type="number" id="num-expert-questions" min="1" required>
+        
+            <label for="num-attempts">Number of Attempts:</label>
+            <input type="number" id="num-attempts" min="1" required>
+        
+            <button type="submit">Proceed to Add Questions</button>
+        </form>
+        
+        <a href="index.html"><button>Back to Home</button></a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

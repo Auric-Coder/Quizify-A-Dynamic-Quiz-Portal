@@ -1,0 +1,655 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: black;
+    color: #ababab; 
+    margin: 0;
+    padding: 0;
+    transition: 0.5s;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+nav {
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    display: flex;
+    align-items: center;
+}
+
+nav ul li img.nav-logo {
+    height: 60px;
+    width: auto;
+    margin-right: 10px;
+}
+
+nav ul li .name {
+    font-size: 40px;
+    color: orange;
+    font-weight: 600;
+    margin-right: 100px;
+}
+
+.left-menu {
+    margin-right: auto;
+}
+
+
+nav ul li a {
+    color: #ababab;
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 50px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: orange;
+}
+
+
+/* login and signup button */
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #f5f2f2;
+    border: 2px solid orange;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.login-btn {
+    background-color: transparent;
+    margin-right: 20px; /* space between login and signup */
+}
+
+.signup-btn {
+    background-color: orange;
+    color: #fffdfd;
+}
+
+.btn:hover {
+    background-color: orange;
+    color: #f4f1f1;
+    cursor: pointer;
+}
+
+
+/* home section */
+.main-container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    text-align: center; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 450px;
+}
+
+.main-container h1 {
+    font-size: 80px;
+    font-weight: 700;
+    color: #ababab;
+}
+
+.main-container-two {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    text-align: center; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.main-container h2 {
+    font-size: 20px;
+    font-weight: 200;
+    color: #ababab;
+}
+
+button {
+    background-color: orange; 
+    color: #f9f1f1; 
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px; 
+    font-size: 20px;
+    font-weight: 700;
+    transition: background-color 0.5s;
+}
+
+button:hover {
+    background-color: darkorange; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+button:focus {
+    outline: 3px solid rgb(171, 171, 58);
+}
+
+
+/* progress bar */
+.progress-bar {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+.progress {
+    width: 60%;
+    height: 10px;
+    background-color: orange;
+    border-radius: 5px;
+}
+
+
+/* stats counter section */
+.stats-counter {
+    text-align: center;
+    padding: 50px 0;
+    background-color: black;
+    color: #ababab;
+}
+
+.stats-counter h2 {
+    font-size: 40px;
+    color: orange;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 80%;
+}
+
+.stat-item {
+    font-size: 24px;
+    color: #ababab;
+}
+
+.stat-number {
+    font-size: 48px;
+    color: orange;
+    font-weight: 700;
+}
+
+
+/* call to action (cta banner )*/
+.cta-banner {
+    background-color: black;
+    padding: 40px;
+    text-align: center;
+    color: #ababab;
+    margin-top: 20px;
+}
+
+.cta-banner h2 {
+    font-size: 50px;
+    color: orange;
+    margin-bottom: 10px;
+}
+
+.cta-banner p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    background-color: orange;
+    color: #f9f4f4;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: darkorange;
+}
+
+
+/* testimonial carousel */
+.testimonial-carousel {
+    background-color: black;
+    padding: 50px;
+    text-align: center;
+    color: #ababab;
+}
+
+.testimonial-carousel h2 {
+    font-size: 50px;
+    color: orange;
+    margin-bottom: 20px;
+}
+
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    gap: 20px;
+}
+
+.testimonial-slide {
+    width: 250px;
+    background-color: #232323;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.4s;
+}
+
+.testimonial-slide img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.testimonial-slide p {
+    color: #ccc;
+    font-size: 15px;
+    margin: 0;
+}
+
+
+/* discover quiz section */
+.discover-quiz {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #0a0a0a;
+    margin-bottom: 0px;
+}
+
+.discover-quiz h2 {
+    color: orange;
+    font-size: 50px;
+    margin-bottom: 40px;
+
+}
+
+.quiz-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #1c1c1c;
+    color: #ababab;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px; /* Increased card width */
+    margin: 20px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.quiz-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    color: orange;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card button {
+    background-color: orange;
+    color: #fff7f7;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 700;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card button:hover {
+    background-color: #ff9f1a;
+}
+
+
+/*leaderboard*/
+.leaderboard-section {
+    text-align: center;
+    padding: 40px;
+    background-color: #181818;
+    color: #ababab;
+    /* margin-bottom: 0px; */
+}
+
+.leaderboard-section h2 {
+    font-size: 50px;
+    color: orange;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+.leaderboard-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.leaderboard-card {
+    background-color: #262626;
+    border-radius: 10px;
+    padding: 20px;
+    width: 200px;
+    margin: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+}
+
+.leaderboard-card:hover {
+    transform: scale(1.05);
+}
+
+.player-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.leaderboard-card h3 {
+    font-size: 20px;
+    color: orange;
+    margin: 10px 0;
+}
+
+.leaderboard-card p {
+    font-size: 16px;
+    color: #ccc;
+}
+
+.achievement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.trophy-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.achievement span {
+    font-size: 14px;
+    color: #ababab;
+    font-weight: 500;
+}
+
+
+/* about us */
+.about-us-section {
+    padding: 50px 20px;
+    background-color:#2c3e50;
+    color: #333;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.about-us-container {
+    width: 80%;
+    margin: auto;
+}
+
+.about-us-section h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #9d8e7c;
+    margin-bottom: 20px;
+}
+
+.about-us-section p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #ababab;
+}
+
+.about-us-section .signature {
+    font-size: 20px;
+    font-style: italic;
+    color: #abaaab;
+}
+
+@media (max-width: 768px) {
+    .about-us-container {
+        width: 95%;
+    }
+
+    .about-us-section h2 {
+        font-size: 28px;
+    }
+
+    .about-us-section p {
+        font-size: 16px;
+    }
+}
+
+
+/* contact us */
+#contact-us {
+    background-color: #1e1e1e;
+    color: whitesmoke;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.contact-container-unique h2 {
+    font-size: 50px;
+    font-weight: 700;
+    color: orange;
+}
+
+.contact-container-unique p {
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
+.contact-form-unique {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+
+.contact-form-unique input, 
+.contact-form-unique textarea {
+    width: 85%;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #181818;
+    font-size: large;
+}
+
+.contact-form-unique textarea {
+    height: 120px;
+}
+
+.contact-form-unique input:focus,
+.contact-form-unique textarea:focus {
+    outline: none;
+    border-color: orange;
+    background-color: #fff;
+}
+
+.contact-form-unique button {
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form-unique button:hover {
+    background-color: darkorange;
+}
+
+
+.social-media a {
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.social-media img {
+    width: 40px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.social-media img:hover {
+    transform: scale(1.2);
+}
+
+
+
+@media (max-width: 600px) {
+    .quiz-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Form styling: Ensure it's centered */
+.quiz-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px; /* Keeps it from expanding too wide */
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    border: 1px solid #f0f0f0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    font-size: large;
+    font-weight: 700;
+    color: #6a6363;
+}
+
+.quiz-form:hover {
+    transform: translateY(-5px); /* Lift effect */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+
+/* Input fields fit inside the card properly */
+.quiz-form input[type="text"], input[type="number"], input[type="password"] {
+    padding: 12px;
+    margin-top: 8px;
+    width: 90%; /* Adjusted to ensure it fits within the card */
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 200;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+/* Question block styling: Keeping content inside the card */
+.quiz-form .question-block {
+    margin-bottom: 20px;
+    width: 90%; /* Keeps everything within the border */
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid orange;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.quiz-form button {
+    padding: 12px 25px; /* Larger padding for button */
+    margin-top: 25px;
+    background-color: orange;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 8px; /* Slightly larger radius for softer buttons */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Button hover transition */
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: darkorange;
+    transform: scale(1.05); /* Slight scaling on hover for emphasis */
+}
+
+/* 'Back to Home' button styling */
+a button {
+    background-color: orange;
+    color: black;
+    margin-top: 10px;
+}
+
+/* Hover effect for 'Back to Home' button */
+a button:hover {
+    background-color: gray;
+    transform: scale(1.05);
+}
+
+/* Add spacing between form elements */
+input, label, button {
+    margin-bottom: 15px;
+}
+
