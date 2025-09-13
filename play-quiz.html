@@ -7,20 +7,34 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="main-container">
-        <h2 id="quiz-title">Quiz Title</h2>
-        <div id="attempts-text">Attempts left: 3</div>
-        <div id="question-text">Question will appear here.</div>
-        <div id="options-container"></div>
-        <button id="next-question-button" disabled>Next Question</button>
-        <div id="feedback"></div>
+    <div class="quiz-play-container">
+        <div class="quiz-header">
+            <h2 id="quiz-title">Quiz Title</h2>
+            <div class="quiz-info">
+                <div id="current-section" class="section-indicator">Section: EASY</div>
+                <div id="attempts-text" class="attempts-counter">Attempts left: 3</div>
+                <div id="score-display" class="score-counter">Score: 0</div>
+            </div>
+        </div>
+        
+        <div class="quiz-content">
+            <div class="question-container">
+                <h3 id="question-text">Question will appear here.</h3>
+                <div id="options-container" class="options-grid"></div>
+            </div>
+            
+            <div class="quiz-controls">
+                <button id="next-question-button" class="next-btn" disabled>Next Question</button>
+                <div id="feedback" class="feedback-message"></div>
+            </div>
+        </div>
 
-        <!-- Button to Return to the Quizzes Page -->
-        <a href="quizzes.html"><button>Back to Quizzes</button></a>
+        <div class="quiz-navigation">
+            <a href="quizzes.html"><button class="back-btn">Back to Quizzes</button></a>
+        </div>
     </div>
 
     <!-- JavaScript file with updated logic -->
     <script src="script.js"></script>
 </body>
 </html>
-
