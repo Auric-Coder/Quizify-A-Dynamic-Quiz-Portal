@@ -38,6 +38,8 @@ function updateQuiz(quiz) {
         quizzes[quizIndex] = quiz;
         localStorage.setItem('quizzes', JSON.stringify(quizzes));
         console.log(`Quiz updated: ${quiz.title}`);
+    } else {
+        console.error(`Quiz not found for update: ${quiz.title}`);
     }
 }
 
@@ -138,9 +140,15 @@ function handleAddQuestionsPage() {
                 const questionData = getQuestionData(section, i);
                 if (!questionData) return;
 
+                const shuffledOptions = shuffleArray([questionData.correctAnswer, ...questionData.wrongAnswers]);
+                const correctAnswerIndex = shuffledOptions.indexOf(questionData.correctAnswer);
+                
+                console.log(`Question shuffled - Correct answer "${questionData.correctAnswer}" is at position ${correctAnswerIndex}`);
+                
                 sections[section].push({
                     questionText: questionData.questionText,
-                    options: shuffleArray([questionData.correctAnswer, ...questionData.wrongAnswers])
+                    options: shuffledOptions,
+                    correctAnswerIndex: correctAnswerIndex
                 });
             }
         }
@@ -149,7 +157,8 @@ function handleAddQuestionsPage() {
             title: currentQuiz.title,
             password: currentQuiz.password,
             sections: sections,
-            attempts: attempts
+            attempts: attempts,
+            numQuestions: currentQuiz.numQuestions
         });
         alert('Quiz saved successfully!');
         window.location.href = 'quizzes.html';
@@ -220,9 +229,13 @@ function handleQuizzesPage() {
             currentQuiz = quiz;
             currentQuestionIndex = 0;
             correctAnswers = 0;
-            attempts = quiz.attempts;
+            attempts = quiz.attempts || 10; // fallback if attempts not defined
             usedQuestions.clear();
             consecutiveCorrectAnswers = 0; // Reset counter for new quiz
+            currentSection = 'EASY'; // Reset to EASY section
+            
+            // Store quiz data in sessionStorage for the play page
+            sessionStorage.setItem('currentQuiz', JSON.stringify(quiz));
             window.location.href = 'play-quiz.html';
         };
         quizDiv.appendChild(playButton);
@@ -259,82 +272,165 @@ function handleQuizzesPage() {
 
 // Functionality to manage the display and logic for the quiz play page
 function handlePlayQuizPage() {
-    const quiz = currentQuiz;
+    // Get quiz from sessionStorage if currentQuiz is not available
+    let quiz = currentQuiz;
+    if (!quiz) {
+        const storedQuiz = sessionStorage.getItem('currentQuiz');
+        if (storedQuiz) {
+            quiz = JSON.parse(storedQuiz);
+            currentQuiz = quiz;
+        }
+    }
     const quizTitleElement = document.getElementById('quiz-title');
     const questionText = document.getElementById('question-text');
     const optionsContainer = document.getElementById('options-container');
     const attemptsText = document.getElementById('attempts-text');
     const nextButton = document.getElementById('next-question-button');
+    const feedbackElement = document.getElementById('feedback');
+    const currentSectionElement = document.getElementById('current-section');
+    const scoreDisplayElement = document.getElementById('score-display');
 
-    if (!quiz || !quizTitleElement || !questionText || !optionsContainer || !attemptsText || !nextButton) {
+    if (!quiz || !quizTitleElement || !questionText || !optionsContainer || !attemptsText || !nextButton || !feedbackElement) {
         console.error("Play Quiz page setup failed due to missing elements or quiz data.");
         return;
     }
 
-    quizTitleElement.textContent = `Quiz: ${quiz.title}`;
+    quizTitleElement.textContent = `${quiz.title}`;
     attemptsText.textContent = `Attempts left: ${attempts}`;
+    currentSectionElement.textContent = `Section: ${currentSection}`;
+    scoreDisplayElement.textContent = `Score: ${correctAnswers}`;
+    
+    // Initialize maxQuestions based on quiz data
+    const totalQuestions = Object.values(quiz.numQuestions || {}).reduce((sum, count) => sum + count, 0);
+    maxQuestions = totalQuestions || 10; // fallback
+    
+    // Initialize question tracking
+    currentQuestionIndex = 0;
+    correctAnswers = 0;
+    attempts = quiz.attempts || 10;
+    currentSection = 'EASY';
+    consecutiveCorrectAnswers = 0;
 
     displayQuestion();
 
     function displayQuestion() {
         if (currentQuestionIndex >= maxQuestions || attempts <= 0) {
-            alert(`Quiz Over! Your score is: ${correctAnswers}`);
+            alert(`Quiz Over! Your final score is: ${correctAnswers}/${maxQuestions}`);
             window.location.href = 'quizzes.html';
             return;
         }
 
         const currentQuestion = getCurrentQuestion();
-        if (!currentQuestion) return;
+        if (!currentQuestion) {
+            alert(`Quiz Over! Your final score is: ${correctAnswers}/${maxQuestions}`);
+            window.location.href = 'quizzes.html';
+            return;
+        }
 
         questionText.textContent = currentQuestion.questionText;
         optionsContainer.innerHTML = '';
+        feedbackElement.textContent = '';
+        feedbackElement.className = 'feedback-message';
 
         currentQuestion.options.forEach(option => {
             const optionButton = document.createElement('button');
             optionButton.className = 'mcq-option';
             optionButton.textContent = option;
-            optionButton.onclick = () => checkAnswer(option, currentQuestion.options[0]);
+            optionButton.disabled = false;
+            optionButton.onclick = () => checkAnswer(option);
             optionsContainer.appendChild(optionButton);
         });
+        
+        nextButton.disabled = true;
     }
 
     nextButton.onclick = () => {
+        currentQuestionIndex++;
         displayQuestion();
-        nextButton.disabled = true;
     };
 }
 
 function getCurrentQuestion() {
+    if (!currentQuiz || !currentQuiz.sections) {
+        console.error("No quiz data available");
+        return null;
+    }
+    
     const sectionQuestions = currentQuiz.sections[currentSection];
-    const question = sectionQuestions[currentQuestionIndex++];
+    if (!sectionQuestions || sectionQuestions.length === 0) {
+        console.warn("No questions found in section:", currentSection);
+        return null;
+    }
+    
+    const questionIndex = currentQuestionIndex % sectionQuestions.length;
+    const question = sectionQuestions[questionIndex];
+    
     if (!question) {
-        console.warn("Question not found in section:", currentSection);
+        console.warn("Question not found at index:", questionIndex, "in section:", currentSection);
         return null;
     }
     return question;
 }
 
 function checkAnswer(selectedOption) {
-    const currentQuestion = sections[currentSection][usedQuestions.size - 1];
-    const correctAnswer = currentQuestion.options[0];
+    const feedbackElement = document.getElementById('feedback');
+    const attemptsText = document.getElementById('attempts-text');
+    const nextButton = document.getElementById('next-question-button');
+    const currentSectionElement = document.getElementById('current-section');
+    const scoreDisplayElement = document.getElementById('score-display');
+    
+    const currentQuestion = getCurrentQuestion();
+    if (!currentQuestion) {
+        console.error('No current question found');
+        return;
+    }
+    
+    // Handle both new format (with correctAnswerIndex) and old format (correct answer always first)
+    const correctAnswer = currentQuestion.correctAnswerIndex !== undefined ? 
+        currentQuestion.options[currentQuestion.correctAnswerIndex] : 
+        currentQuestion.options[0];
+    
+    // Disable all option buttons to prevent multiple clicks
+    const optionButtons = document.querySelectorAll('.mcq-option');
+    optionButtons.forEach(button => {
+        button.disabled = true;
+        if (button.textContent === correctAnswer) {
+            button.style.backgroundColor = '#4caf50';
+            button.style.borderColor = '#4caf50';
+        } else if (button.textContent === selectedOption && selectedOption !== correctAnswer) {
+            button.style.backgroundColor = '#f44336';
+            button.style.borderColor = '#f44336';
+        }
+    });
     
     if (selectedOption === correctAnswer) {
         correctAnswers++;
-        feedback.textContent = 'Correct!';
+        feedbackElement.textContent = 'Correct! 🎉';
+        feedbackElement.className = 'feedback-message correct';
         consecutiveCorrectAnswers++;
 
         // Check if the user should be promoted to the next section
-        if (currentSection === "EASY" && consecutiveCorrectAnswers === 3) {
+        // Upgrade logic: if section has few questions, upgrade after each correct answer
+        // Otherwise, upgrade after completing all questions in the section
+        const currentSectionQuestions = currentQuiz.sections[currentSection]?.length || 0;
+        const shouldUpgrade = currentSectionQuestions <= 2 ? 
+            consecutiveCorrectAnswers >= 1 : // Upgrade after 1 correct if section has 1-2 questions
+            consecutiveCorrectAnswers >= Math.min(currentSectionQuestions, 3); // Otherwise upgrade after completing section or 3 correct
+        
+        console.log(`Section: ${currentSection}, Questions: ${currentSectionQuestions}, Consecutive Correct: ${consecutiveCorrectAnswers}, Should Upgrade: ${shouldUpgrade}`);
+        
+        if (currentSection === "EASY" && shouldUpgrade) {
             currentSection = "HARD";
             consecutiveCorrectAnswers = 0; // Reset for next section
-            alert('Congratulations! Moving to HARD section.');
-        } else if (currentSection === "HARD" && consecutiveCorrectAnswers === 3) {
+            alert(`Congratulations! Moving to HARD section. (Completed ${currentSectionQuestions} questions)`);
+        } else if (currentSection === "HARD" && shouldUpgrade) {
             currentSection = "EXPERT";
             consecutiveCorrectAnswers = 0; // Reset for next section
-            alert('Congratulations! Moving to EXPERT section.');
+            alert(`Congratulations! Moving to EXPERT section. (Completed ${currentSectionQuestions} questions)`);
         }
     } else {
-        feedback.textContent = `Incorrect. Correct answer: ${correctAnswer}`;
+        feedbackElement.textContent = `Incorrect. The correct answer was: ${correctAnswer}`;
+        feedbackElement.className = 'feedback-message incorrect';
         consecutiveCorrectAnswers = 0; // Reset counter on incorrect answer
         
         // Demote to previous section if possible
@@ -349,11 +445,14 @@ function checkAnswer(selectedOption) {
 
     attempts--;
     attemptsText.textContent = `Attempts left: ${attempts}`;
+    currentSectionElement.textContent = `Section: ${currentSection}`;
+    scoreDisplayElement.textContent = `Score: ${correctAnswers}`;
 
     if (attempts > 0) {
         nextButton.disabled = false;
     } else {
         nextButton.disabled = true;
+        feedbackElement.textContent += ' Quiz Over!';
     }
 }
 
@@ -443,8 +542,12 @@ function handleEditQuizPage() {
                 }
 
                 // Update the question data
+                const shuffledOptions = shuffleArray([updatedCorrectAnswer, ...updatedWrongAnswers]);
+                const correctAnswerIndex = shuffledOptions.indexOf(updatedCorrectAnswer);
+                
                 sections[section][index].questionText = updatedQuestionText;
-                sections[section][index].options = shuffleArray([updatedCorrectAnswer, ...updatedWrongAnswers]);
+                sections[section][index].options = shuffledOptions;
+                sections[section][index].correctAnswerIndex = correctAnswerIndex;
             });
         }
 
